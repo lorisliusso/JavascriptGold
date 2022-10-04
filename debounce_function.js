@@ -13,7 +13,7 @@ function debounce(callback, delay){
     let timerID;
 
     return function(immediate=false, ...args){
-        //if call again and wait time is not elapsed, block current execution and set a new one.
+        //if called again and wait time is not elapsed, block current execution and set a new one.
         clearTimeout(timerID)
         //if we want immediate execution or the wait time is elapsed:
         if (immediate===true || timerID === null){
