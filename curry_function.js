@@ -24,18 +24,16 @@ curriedSum(1, 2)(3); // [Function]
 */
 
 function curry(callback){
-
+    
     return function curriedCallBack(...args){
         // CASES: 
-    
+
         // 1. NO ARGUMENTS:
         if (args.length===0){
             return callback()
         }
-
         // 2. 1 OR MORE ARGUMENTS:
         else{//return another function and check it again:
-
             return function(...otherArgs){
                 if(otherArgs.length===0){
                     return callback(...args)
