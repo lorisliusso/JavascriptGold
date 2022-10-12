@@ -8,38 +8,27 @@ Calling debounce(callback, delay) should return a new "debounced" version of the
  The underlying callback functions should have the this context of the debounced-function callers (We can use .apply or .call).
  */
 
-function debounce(callback, delay){
+ function debounce(callback, delay, immediate = false) {
 
     let timerID;
+    
+    return function (...args){
 
-    return function(immediate=false, ...args){
-        //if called again and wait time is not elapsed, block current execution and set a new one.
-        clearTimeout(timerID)
-        //if we want immediate execution or the wait time is elapsed:
-        if (immediate===true || timerID === null){
-            console.log('Immediate execution') //OPTIONAL: just to check execution
-            callback.apply(this,args)
-        }
-        //else execute our callback function with delay
-        else{
-            console.log('Wait time!') //OPTIONAL: just to check execution
-            timerID= setTimeout(()=>{
-                callback.apply(this, args)
-                timerID= null;
-            }, delay)
+    clearTimeout(timerID)
+    let canCallAgain= timerID==null && immediate;
 
-        }
+    if(canCallAgain){
+     callback.apply(this,args);
     }
+
+    timerID= setTimeout(()=>{
+
+    if(!immediate){
+      callback.apply(this,args);
+      }
+
+    timerID=null;
+          }, delay)
+
 }
-
-//Let's test it:
-
-function hello(){
-    console.log('Hello World')
 }
-
-const debouncedHello= debounce(hello, 3000)
-
-debouncedHello(immediate=true)
-debouncedHello()
-debouncedHello()
