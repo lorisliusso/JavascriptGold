@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    height: 100vh;
+    width: 100%;
+    background-color: lightblue;
+    text-align: center;
+
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 4rem;
+    width: fit-content;
+    background-color: azure;
+    border-radius: 10px;
+
+    #inner {
+        display: flex;
+        justify-content: space-between;
+
+
+
+        #todo-input {
+            margin: 0 auto;
+            padding: 1rem;
+            text-align: center;
+            font-size: 30px;
+            background-color: white;
+            border: none;
+            box-shadow: 0 0 4px lightgray;
+
+        }
+
+        #add-button {
+            padding: 0 2rem 0 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+
+            :hover {
+                background-color: lightgreen;
+
+            }
+
+        }
+
+        //add button
+
+    }
+
+    //inner
+
+
+    #todo-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            background-color: cornflowerblue;
+            color: aliceblue;
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding: 0 1rem 0 1rem;
+
+        }
+
+
+        #delete-button {
+            padding: 0 2rem 0 2rem;
+            background-color: cornflowerblue;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+
+    }
+
+    //todo-list (ul)
+
+
+}
+
+//container

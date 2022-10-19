@@ -32,3 +32,151 @@ Calling debounce(callback, delay) should return a new "debounced" version of the
 
 }
 }
+
+
+
+function throttle(callback, delay) {
+
+
+    let timerID;
+    let LastCall=0;
+    
+    
+    const throttledFunction= function(...args){
+    
+        const ActualTime= Date.now()
+        const SecondsPassed= ActualTime - LastCall
+        const delayRemaining= delay-SecondsPassed
+    
+    
+        if (delayRemaining <=0){
+           LastCall=ActualTime
+           callback.apply(this,args)
+           }
+    
+    
+       else{
+    
+    
+     clearTimeout(timerID);
+    
+         timerID= setTimeout(()=>{
+    
+         
+           lastCall= Date.now()
+           callback.apply(this,args);
+    
+    
+          }, delayRemaining)
+       }
+    
+    
+    }
+    
+    throttledFunction.cancel= function(){clearTimeout(timerID)}
+    
+    return throttledFunction;
+    
+    
+    
+    
+    }
+
+
+    function throttle(callback, delay) {
+
+
+        let timerID;
+        let lastCall=0;
+        
+        return function(...args){
+        
+            const currentTime= Date.now()
+            const timePassed= currentTime - lastCall
+            const delayRemaining= timePassed - delay
+        
+        
+           if (delayRemaining <=0){
+              lastCall= Date.now()
+              callback.apply(this,args)
+          }
+        
+          else{
+        
+           clearTimeout(timerID)
+        
+            timerID= setTimeout(()=>{
+        
+            lastCall=Date.now()
+            callback.apply(this, args)
+        
+        
+        }, delayRemaining)
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        }
+
+
+
+
+
+        function curry(callback) {
+
+
+            return function CurriedCallback(...args){
+           
+              if(args.length===0){
+              
+               return callback()  
+           
+           }
+           
+           
+              else{
+           
+           return function(...otherArgs){
+           
+           
+             if(otherArgs.length===0){
+           
+           return callback()}
+           
+            else{
+           
+           return CurriedCallback(...args, ...otherArgs)}
+           
+           }
+           
+           
+              
+           
+           
+           
+           
+           
+           }
+           
+             
+           
+           
+           
+           
+           
+           }
+           
+           }
+           
